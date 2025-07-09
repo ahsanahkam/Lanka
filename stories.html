@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trail Tales - Lanka Trails | Travel Stories from Sri Lanka</title>
+    <meta name="description" content="Read inspiring travel stories and experiences from Sri Lanka. Real tales from travelers exploring cultural sites, beaches, highlands, and wildlife." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-content">
+          <div class="nav-logo">
+            <span class="logo-text">Lanka Trails</span>
+          </div>
+
+          <div class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="trails.html" class="nav-link">Explore Trails</a>
+            <a href="stories.html" class="nav-link active">Stories</a>
+            <a href="index.html#finder" class="nav-link">Plan Your Trip</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+          </div>
+
+          <div class="mobile-menu-btn">
+            <button onclick="toggleMobileMenu()" aria-label="Toggle menu">
+              <span class="hamburger"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+          <a href="trails.html" class="mobile-nav-link">Explore Trails</a>
+          <a href="stories.html" class="mobile-nav-link">Stories</a>
+          <a href="index.html#finder" class="mobile-nav-link">Plan Your Trip</a>
+          <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background-image: url('images/stories-page-header-train-tea-plantations.jpg');">
+      <div class="page-header-overlay"></div>
+      <div class="page-header-content">
+        <h1 class="page-title">Trail Tales</h1>
+        <p class="page-subtitle">Real stories from travelers who discovered the magic of Sri Lanka</p>
+      </div>
+    </section>
+
+    <!-- Story Categories -->
+    <section class="story-categories">
+      <div class="container">
+        <div class="category-filters">
+          <button class="filter-button active" onclick="filterStories('all')">All Stories</button>
+          <button class="filter-button" onclick="filterStories('cultural')">Cultural</button>
+          <button class="filter-button" onclick="filterStories('coastal')">Coastal</button>
+          <button class="filter-button" onclick="filterStories('highland')">Highland</button>
+          <button class="filter-button" onclick="filterStories('wildlife')">Wildlife</button>
+        </div>
+
+        <!-- Featured Stories -->
+        <div class="featured-stories">
+          <h2 class="section-title">Featured Stories</h2>
+          <div class="featured-grid">
+            <article class="featured-story">
+              <div class="featured-story-image" style="background-image: url('images/featured-story-ella-sunrise-nine-arch.jpg');">
+                <div class="story-category-badge cultural">Cultural</div>
+              </div>
+              <div class="featured-story-content">
+                <div class="story-meta">
+                  <span class="author">Sarah Johnson</span>
+                  <span class="read-time">10 min read</span>
+                  <span class="date">Dec 15, 2023</span>
+                </div>
+                <h2 class="featured-story-title">The Magic of Ella: Where Tea Meets Sky</h2>
+                <p class="featured-story-excerpt">
+                  Standing on Little Adam's Peak at sunrise, watching the mist roll over endless tea plantations, 
+                  I understood why Ella captivates every traveler. This is the story of three transformative days 
+                  in Sri Lanka's hill country, from the iconic Nine Arch Bridge to hidden waterfalls.
+                </p>
+                <button class="read-more-button" onclick="readFullStory('ella-magic')">Read Full Story</button>
+              </div>
+            </article>
+
+            <article class="featured-story">
+              <div class="featured-story-image" style="background-image: url('images/featured-story-yala-leopard-encounter.jpg');">
+                <div class="story-category-badge wildlife">Wildlife</div>
+              </div>
+              <div class="featured-story-content">
+                <div class="story-meta">
+                  <span class="author">Michael Chen</span>
+                  <span class="read-time">8 min read</span>
+                  <span class="date">Dec 10, 2023</span>
+                </div>
+                <h2 class="featured-story-title">Face to Face with Sri Lankan Leopards</h2>
+                <p class="featured-story-excerpt">
+                  The moment our eyes met across 20 meters of scrubland, time stopped. This magnificent Sri Lankan 
+                  leopard, muscles rippling under dappled sunlight, embodied the wild heart of Yala National Park. 
+                  Here's how a simple safari became a life-changing encounter with nature.
+                </p>
+                <button class="read-more-button" onclick="readFullStory('leopard-encounter')">Read Full Story</button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- All Stories Grid -->
+        <div class="all-stories">
+          <h2 class="section-title">All Trail Tales</h2>
+          <div class="stories-grid">
+            <!-- Cultural Stories -->
+            <article class="story-card cultural">
+              <div class="story-image" style="background-image: url('images/story-sigiriya-climb-sunrise.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Cultural</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Emma Williams</span> • <span>6 min read</span> • <span>Dec 8, 2023</span>
+                </div>
+                <h3 class="story-title">Climbing Sigiriya: A Journey Through Time</h3>
+                <p class="story-excerpt">
+                  Each step up the ancient rock fortress revealed layers of history. From the Mirror Wall's ancient graffiti to the breathtaking Cloud Maidens frescoes.
+                </p>
+                <button class="story-button" onclick="readStory('sigiriya-climb')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card cultural">
+              <div class="story-image" style="background-image: url('images/story-kandy-temple-ceremony.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Cultural</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Raj Patel</span> • <span>7 min read</span> • <span>Dec 5, 2023</span>
+                </div>
+                <h3 class="story-title">Evening Prayers at the Temple of the Tooth</h3>
+                <p class="story-excerpt">
+                  The rhythmic chanting, flickering oil lamps, and devotees' prayers created an atmosphere of profound spirituality in Kandy's most sacred temple.
+                </p>
+                <button class="story-button" onclick="readStory('kandy-temple')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card cultural">
+              <div class="story-image" style="background-image: url('images/story-anuradhapura-bicycle-ruins.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Cultural</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Lisa Thompson</span> • <span>5 min read</span> • <span>Dec 1, 2023</span>
+                </div>
+                <h3 class="story-title">Cycling Through Anuradhapura's Sacred Ruins</h3>
+                <p class="story-excerpt">
+                  Exploring the ancient capital by bicycle revealed hidden temples, massive dagobas, and the profound serenity of this UNESCO World Heritage site.
+                </p>
+                <button class="story-button" onclick="readStory('anuradhapura-cycling')">Read More →</button>
+              </div>
+            </article>
+
+            <!-- Coastal Stories -->
+            <article class="story-card coastal">
+              <div class="story-image" style="background-image: url('images/story-galle-fort-sunset-walk.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Coastal</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>James Rodriguez</span> • <span>4 min read</span> • <span>Nov 28, 2023</span>
+                </div>
+                <h3 class="story-title">Sunset Strolls on Galle Fort's Ramparts</h3>
+                <p class="story-excerpt">
+                  Walking the 400-year-old ramparts as the sun sets over the Indian Ocean, with colonial architecture glowing in golden light.
+                </p>
+                <button class="story-button" onclick="readStory('galle-sunset')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card coastal">
+              <div class="story-image" style="background-image: url('images/story-mirissa-whale-watching-adventure.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Coastal</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Anna Mueller</span> • <span>8 min read</span> • <span>Nov 25, 2023</span>
+                </div>
+                <h3 class="story-title">Blue Whale Encounters off Mirissa</h3>
+                <p class="story-excerpt">
+                  The moment a 90-foot blue whale surfaced beside our boat, spraying mist into the morning sun, will forever be etched in memory.
+                </p>
+                <button class="story-button" onclick="readStory('mirissa-whales')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card coastal">
+              <div class="story-image" style="background-image: url('images/story-unawatuna-snorkeling-coral.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Coastal</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>David Kim</span> • <span>5 min read</span> • <span>Nov 22, 2023</span>
+                </div>
+                <h3 class="story-title">Underwater Paradise at Unawatuna</h3>
+                <p class="story-excerpt">
+                  Snorkeling in Unawatuna's crystal-clear waters revealed a vibrant underwater world of coral reefs and tropical fish.
+                </p>
+                <button class="story-button" onclick="readStory('unawatuna-snorkeling')">Read More →</button>
+              </div>
+            </article>
+
+            <!-- Highland Stories -->
+            <article class="story-card highland">
+              <div class="story-image" style="background-image: url('images/story-adams-peak-pilgrimage-climb.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Highland</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Priya Sharma</span> • <span>9 min read</span> • <span>Nov 20, 2023</span>
+                </div>
+                <h3 class="story-title">Sacred Steps: Climbing Adam's Peak</h3>
+                <p class="story-excerpt">
+                  The pre-dawn pilgrimage up Sri Pada, joining thousands of devotees, culminated in a sunrise that seemed to touch the divine.
+                </p>
+                <button class="story-button" onclick="readStory('adams-peak-pilgrimage')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card highland">
+              <div class="story-image" style="background-image: url('images/story-nuwara-eliya-tea-factory-tour.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Highland</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Tom Anderson</span> • <span>6 min read</span> • <span>Nov 18, 2023</span>
+                </div>
+                <h3 class="story-title">From Leaf to Cup: Nuwara Eliya Tea Experience</h3>
+                <p class="story-excerpt">
+                  Learning about Ceylon tea production from picking leaves at dawn to tasting the perfect brew in "Little England's" cool mountain air.
+                </p>
+                <button class="story-button" onclick="readStory('tea-experience')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card highland">
+              <div class="story-image" style="background-image: url('images/story-horton-plains-worlds-end-hike.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Highland</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Sophie Clark</span> • <span>7 min read</span> • <span>Nov 15, 2023</span>
+                </div>
+                <h3 class="story-title">Standing at World's End</h3>
+                <p class="story-excerpt">
+                  The 4,000-foot drop at World's End offers more than views – it's a moment of contemplation about nature's incredible power.
+                </p>
+                <button class="story-button" onclick="readStory('worlds-end-hike')">Read More →</button>
+              </div>
+            </article>
+
+            <!-- Wildlife Stories -->
+            <article class="story-card wildlife">
+              <div class="story-image" style="background-image: url('images/story-udawalawe-elephant-orphanage.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Wildlife</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Maria Santos</span> • <span>6 min read</span> • <span>Nov 12, 2023</span>
+                </div>
+                <h3 class="story-title">Gentle Giants of Udawalawe</h3>
+                <p class="story-excerpt">
+                  Watching baby elephants take their first steps at the orphanage, then seeing their wild cousins roam free in the national park.
+                </p>
+                <button class="story-button" onclick="readStory('udawalawe-elephants')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card wildlife">
+              <div class="story-image" style="background-image: url('images/story-sinharaja-rainforest-canopy.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Wildlife</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Alex Johnson</span> • <span>8 min read</span> • <span>Nov 10, 2023</span>
+                </div>
+                <h3 class="story-title">Lost in Sinharaja's Green Cathedral</h3>
+                <p class="story-excerpt">
+                  Trekking through Sri Lanka's last rainforest, discovering endemic species and feeling humbled by this ancient ecosystem.
+                </p>
+                <button class="story-button" onclick="readStory('sinharaja-rainforest')">Read More →</button>
+              </div>
+            </article>
+
+            <article class="story-card wildlife">
+              <div class="story-image" style="background-image: url('images/story-bundala-bird-watching-flamingos.jpg');">
+                <div class="story-overlay"></div>
+                <div class="story-category-badge">Wildlife</div>
+              </div>
+              <div class="story-content">
+                <div class="story-meta">
+                  <span>Rachel Green</span> • <span>5 min read</span> • <span>Nov 8, 2023</span>
+                </div>
+                <h3 class="story-title">Pink Clouds: Flamingos at Bundala</h3>
+                <p class="story-excerpt">
+                  Thousands of greater flamingos creating a pink spectacle against Bundala's wetlands – a birder's dream come true.
+                </p>
+                <button class="story-button" onclick="readStory('bundala-flamingos')">Read More →</button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Story Submission Section -->
+        <div class="story-submission">
+          <div class="submission-content">
+            <h2 class="submission-title">Share Your Sri Lankan Adventure</h2>
+            <p class="submission-subtitle">Have an amazing trail tale to tell? We'd love to feature your story and inspire other travelers.</p>
+            <div class="submission-benefits">
+              <div class="benefit">
+                <span class="benefit-icon">📝</span>
+                <span>Share your unique perspective</span>
+              </div>
+              <div class="benefit">
+                <span class="benefit-icon">🌟</span>
+                <span>Inspire fellow travelers</span>
+              </div>
+              <div class="benefit">
+                <span class="benefit-icon">📷</span>
+                <span>Showcase your photos</span>
+              </div>
+              <div class="benefit">
+                <span class="benefit-icon">🏆</span>
+                <span>Get featured on Lanka Trails</span>
+              </div>
+            </div>
+            <button class="submission-button" onclick="openStorySubmission()">Submit Your Story</button>
+          </div>
+          <div class="submission-image" style="background-image: url('images/story-submission-traveler-writing.jpg');">
+            <div class="submission-image-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" style="background-image: url('images/newsletter-sri-lanka-landscape.jpg');">
+      <div class="newsletter-overlay"></div>
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">Never Miss a Trail Tale</h2>
+        <p class="newsletter-subtitle">Get the latest stories, travel tips, and exclusive insights delivered to your inbox</p>
+        <div class="newsletter-form-large">
+          <input type="email" placeholder="Enter your email address" class="newsletter-input-large" id="story-newsletter-email">
+          <button onclick="subscribeToStories()" class="newsletter-button-large">Subscribe to Stories</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="footer-title">Lanka Trails</h3>
+            <p class="footer-description">
+              Discover Sri Lanka's paths with curated trails that showcase the island's rich culture, stunning coastlines, majestic highlands, and incredible wildlife.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">📷</a>
+              <a href="#" class="social-link" aria-label="Facebook">📘</a>
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html" class="footer-link">Home</a>
+              <a href="trails.html" class="footer-link">Explore Trails</a>
+              <a href="stories.html" class="footer-link">Stories</a>
+              <a href="index.html#finder" class="footer-link">Plan Your Trip</a>
+              <a href="index.html#contact" class="footer-link">Contact</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Contact Info</h4>
+            <div class="contact-info">
+              <p>📧 info@lankatrails.com</p>
+              <p>📞 +94 11 123 4567</p>
+              <p>📍 Colombo, Sri Lanka</p>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Newsletter</h4>
+            <p class="newsletter-text">Get travel tips and exclusive trail updates</p>
+            <div class="newsletter-form">
+              <input type="email" placeholder="Enter your email" class="newsletter-input" id="newsletter-email">
+              <button onclick="subscribeNewsletter()" class="newsletter-button">Subscribe</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Lanka Trails. All rights reserved. | Your Journey, Your Way.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

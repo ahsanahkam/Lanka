@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Trails - Lanka Trails | Sri Lankan Travel Destinations</title>
+    <meta name="description" content="Explore all Sri Lankan travel destinations and trails. Cultural sites, coastal beaches, highland tea country, and wildlife parks." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-content">
+          <div class="nav-logo">
+            <span class="logo-text">Lanka Trails</span>
+          </div>
+
+          <div class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="trails.html" class="nav-link active">Explore Trails</a>
+            <a href="stories.html" class="nav-link">Stories</a>
+            <a href="index.html#finder" class="nav-link">Plan Your Trip</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+          </div>
+
+          <div class="mobile-menu-btn">
+            <button onclick="toggleMobileMenu()" aria-label="Toggle menu">
+              <span class="hamburger"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+          <a href="trails.html" class="mobile-nav-link">Explore Trails</a>
+          <a href="stories.html" class="mobile-nav-link">Stories</a>
+          <a href="index.html#finder" class="mobile-nav-link">Plan Your Trip</a>
+          <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background-image: url('images/trails-page-header-sri-lanka-panorama.jpg');">
+      <div class="page-header-overlay"></div>
+      <div class="page-header-content">
+        <h1 class="page-title">Explore Sri Lankan Trails</h1>
+        <p class="page-subtitle">Discover destinations across cultural sites, pristine coastlines, misty highlands, and wildlife sanctuaries</p>
+      </div>
+    </section>
+
+    <!-- Trail Categories -->
+    <section class="trail-categories">
+      <div class="container">
+        <div class="category-filters">
+          <button class="filter-button active" onclick="filterTrails('all')">All Trails</button>
+          <button class="filter-button" onclick="filterTrails('cultural')">Cultural</button>
+          <button class="filter-button" onclick="filterTrails('coastal')">Coastal</button>
+          <button class="filter-button" onclick="filterTrails('highland')">Highland</button>
+          <button class="filter-button" onclick="filterTrails('wildlife')">Wildlife</button>
+        </div>
+
+        <!-- Cultural Trail Destinations -->
+        <div class="trail-category cultural" id="cultural-destinations">
+          <h2 class="category-title">Cultural Trail Destinations</h2>
+          <div class="destinations-grid">
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-sigiriya-rock-fortress.jpg');">
+                <div class="destination-badge">UNESCO Site</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Sigiriya Rock Fortress</h3>
+                <p class="destination-location">📍 Central Province</p>
+                <p class="destination-description">Ancient rock citadel with stunning frescoes and water gardens, dating back to the 5th century.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Ancient Ruins</span>
+                  <span class="highlight-tag">Frescoes</span>
+                  <span class="highlight-tag">Views</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('sigiriya')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-anuradhapura-ancient-city.jpg');">
+                <div class="destination-badge">Sacred City</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Anuradhapura</h3>
+                <p class="destination-location">📍 North Central Province</p>
+                <p class="destination-description">Sacred ancient capital with massive dagobas, monasteries, and the sacred Bodhi Tree.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Buddhist Sites</span>
+                  <span class="highlight-tag">Ancient Capital</span>
+                  <span class="highlight-tag">Dagobas</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('anuradhapura')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-kandy-temple-tooth.jpg');">
+                <div class="destination-badge">Royal City</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Kandy</h3>
+                <p class="destination-location">📍 Central Province</p>
+                <p class="destination-description">Last royal capital housing the sacred Temple of the Tooth Relic and beautiful lake.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Temple of Tooth</span>
+                  <span class="highlight-tag">Royal Palace</span>
+                  <span class="highlight-tag">Lake</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('kandy')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-polonnaruwa-ancient-ruins.jpg');">
+                <div class="destination-badge">Archaeological</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Polonnaruwa</h3>
+                <p class="destination-location">📍 North Central Province</p>
+                <p class="destination-description">Medieval capital with well-preserved ruins, statues, and the impressive Gal Vihara.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Rock Sculptures</span>
+                  <span class="highlight-tag">Palace Ruins</span>
+                  <span class="highlight-tag">Lotus Pond</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('polonnaruwa')">Explore Destination</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coastal Trail Destinations -->
+        <div class="trail-category coastal" id="coastal-destinations">
+          <h2 class="category-title">Coastal Trail Destinations</h2>
+          <div class="destinations-grid">
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-galle-fort-colonial.jpg');">
+                <div class="destination-badge">Colonial Heritage</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Galle Fort</h3>
+                <p class="destination-location">📍 Southern Province</p>
+                <p class="destination-description">Historic Dutch colonial fort with charming streets, boutique hotels, and ocean views.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Dutch Architecture</span>
+                  <span class="highlight-tag">Ramparts</span>
+                  <span class="highlight-tag">Lighthouse</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('galle')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-unawatuna-beach-paradise.jpg');">
+                <div class="destination-badge">Beach Paradise</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Unawatuna Beach</h3>
+                <p class="destination-location">📍 Southern Province</p>
+                <p class="destination-description">Crescent-shaped golden beach perfect for swimming, snorkeling, and sunset watching.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Swimming</span>
+                  <span class="highlight-tag">Snorkeling</span>
+                  <span class="highlight-tag">Restaurants</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('unawatuna')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-mirissa-whale-watching.jpg');">
+                <div class="destination-badge">Whale Watching</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Mirissa</h3>
+                <p class="destination-location">📍 Southern Province</p>
+                <p class="destination-description">Coastal town famous for blue whale watching and pristine beaches with coconut palms.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Blue Whales</span>
+                  <span class="highlight-tag">Surfing</span>
+                  <span class="highlight-tag">Coconut Hill</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('mirissa')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-bentota-water-sports.jpg');">
+                <div class="destination-badge">Water Sports</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Bentota</h3>
+                <p class="destination-location">📍 Southern Province</p>
+                <p class="destination-description">Premier beach resort destination with water sports, river safaris, and luxury hotels.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Jet Skiing</span>
+                  <span class="highlight-tag">River Safari</span>
+                  <span class="highlight-tag">Luxury Resorts</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('bentota')">Explore Destination</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highland Trail Destinations -->
+        <div class="trail-category highland" id="highland-destinations">
+          <h2 class="category-title">Highland Trail Destinations</h2>
+          <div class="destinations-grid">
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-ella-nine-arch-bridge.jpg');">
+                <div class="destination-badge">Iconic Bridge</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Ella</h3>
+                <p class="destination-location">📍 Uva Province</p>
+                <p class="destination-description">Picturesque hill station with the famous Nine Arch Bridge, tea plantations, and hiking trails.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Nine Arch Bridge</span>
+                  <span class="highlight-tag">Little Adam's Peak</span>
+                  <span class="highlight-tag">Tea Estates</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('ella')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-nuwara-eliya-tea-country.jpg');">
+                <div class="destination-badge">Tea Capital</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Nuwara Eliya</h3>
+                <p class="destination-location">📍 Central Province</p>
+                <p class="destination-description">Cool climate hill station known as "Little England" with tea factories and colonial architecture.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Tea Factories</span>
+                  <span class="highlight-tag">Cool Climate</span>
+                  <span class="highlight-tag">Colonial Style</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('nuwara-eliya')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-adams-peak-pilgrimage.jpg');">
+                <div class="destination-badge">Sacred Mountain</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Adam's Peak</h3>
+                <p class="destination-location">📍 Sabaragamuwa Province</p>
+                <p class="destination-description">Sacred mountain pilgrimage site with challenging night climb rewarded by spectacular sunrise views.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Pilgrimage</span>
+                  <span class="highlight-tag">Sunrise Views</span>
+                  <span class="highlight-tag">Sacred Footprint</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('adams-peak')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-horton-plains-worlds-end.jpg');">
+                <div class="destination-badge">National Park</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Horton Plains</h3>
+                <p class="destination-location">📍 Central Province</p>
+                <p class="destination-description">Highland plateau with World's End cliff, Baker's Falls, and unique montane ecosystem.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">World's End</span>
+                  <span class="highlight-tag">Baker's Falls</span>
+                  <span class="highlight-tag">Endemic Species</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('horton-plains')">Explore Destination</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wildlife Trail Destinations -->
+        <div class="trail-category wildlife" id="wildlife-destinations">
+          <h2 class="category-title">Wildlife Trail Destinations</h2>
+          <div class="destinations-grid">
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-yala-national-park-leopards.jpg');">
+                <div class="destination-badge">Leopard Capital</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Yala National Park</h3>
+                <p class="destination-location">📍 Southern Province</p>
+                <p class="destination-description">Sri Lanka's premier wildlife destination with the highest leopard density in the world.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Leopards</span>
+                  <span class="highlight-tag">Elephants</span>
+                  <span class="highlight-tag">Bird Watching</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('yala')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-udawalawe-elephant-orphanage.jpg');">
+                <div class="destination-badge">Elephant Haven</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Udawalawe National Park</h3>
+                <p class="destination-location">📍 Uva Province</p>
+                <p class="destination-description">Best place to see elephants in their natural habitat, with over 250 elephants in the park.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Elephant Herds</span>
+                  <span class="highlight-tag">Water Buffalo</span>
+                  <span class="highlight-tag">Crocodiles</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('udawalawe')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-sinharaja-rainforest-endemic.jpg');">
+                <div class="destination-badge">Rainforest</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Sinharaja Forest</h3>
+                <p class="destination-location">📍 Sabaragamuwa Province</p>
+                <p class="destination-description">Last viable area of primary tropical rainforest in Sri Lanka with endemic species.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Endemic Birds</span>
+                  <span class="highlight-tag">Butterflies</span>
+                  <span class="highlight-tag">Canopy Walks</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('sinharaja')">Explore Destination</button>
+              </div>
+            </div>
+
+            <div class="destination-card">
+              <div class="destination-image" style="background-image: url('images/destination-bundala-bird-sanctuary.jpg');">
+                <div class="destination-badge">Bird Paradise</div>
+              </div>
+              <div class="destination-content">
+                <h3 class="destination-name">Bundala National Park</h3>
+                <p class="destination-location">📍 Southern Province</p>
+                <p class="destination-description">Important stopover for migratory birds with over 200 species recorded in the park.</p>
+                <div class="destination-highlights">
+                  <span class="highlight-tag">Migratory Birds</span>
+                  <span class="highlight-tag">Flamingos</span>
+                  <span class="highlight-tag">Wetlands</span>
+                </div>
+                <button class="destination-button" onclick="exploreDestination('bundala')">Explore Destination</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section" style="background-image: url('images/cta-sri-lanka-train-tea-country.jpg');">
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Explore Sri Lanka?</h2>
+        <p class="cta-subtitle">Let us help you plan the perfect trail for your adventure</p>
+        <div class="cta-buttons">
+          <a href="index.html#finder" class="cta-button primary">Plan Your Trip</a>
+          <a href="index.html#contact" class="cta-button secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="footer-title">Lanka Trails</h3>
+            <p class="footer-description">
+              Discover Sri Lanka's paths with curated trails that showcase the island's rich culture, stunning coastlines, majestic highlands, and incredible wildlife.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">📷</a>
+              <a href="#" class="social-link" aria-label="Facebook">📘</a>
+              <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html" class="footer-link">Home</a>
+              <a href="trails.html" class="footer-link">Explore Trails</a>
+              <a href="stories.html" class="footer-link">Stories</a>
+              <a href="index.html#finder" class="footer-link">Plan Your Trip</a>
+              <a href="index.html#contact" class="footer-link">Contact</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Contact Info</h4>
+            <div class="contact-info">
+              <p>📧 info@lankatrails.com</p>
+              <p>📞 +94 11 123 4567</p>
+              <p>📍 Colombo, Sri Lanka</p>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Newsletter</h4>
+            <p class="newsletter-text">Get travel tips and exclusive trail updates</p>
+            <div class="newsletter-form">
+              <input type="email" placeholder="Enter your email" class="newsletter-input" id="newsletter-email">
+              <button onclick="subscribeNewsletter()" class="newsletter-button">Subscribe</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Lanka Trails. All rights reserved. | Your Journey, Your Way.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
