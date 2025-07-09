@@ -1,14 +1,30 @@
 
 import React from 'react';
+import { Badge } from './ui/badge';
+import { Button } from './ui/button';
+import { Star } from 'lucide-react';
 
-const stories = [
+interface Story {
+  title: string;
+  excerpt: string;
+  image: string;
+  author: string;
+  readTime: string;
+  date: string;
+  isSponsored?: boolean;
+  sponsorName?: string;
+}
+
+const stories: Story[] = [
   {
     title: "Hiking the Highland Trail: Ella's Peaks",
     excerpt: "An unforgettable journey through Sri Lanka's tea country, where misty mountains meet endless green plantations and every sunrise brings new adventures.",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     author: "Sarah Johnson",
     readTime: "5 min read",
-    date: "Dec 15, 2023"
+    date: "Dec 15, 2023",
+    isSponsored: true,
+    sponsorName: "Mountain View Tea Estate"
   },
   {
     title: "Wildlife Encounters in Yala National Park",
@@ -41,7 +57,9 @@ const Stories = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {stories.map((story, index) => (
-            <article key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <article key={index} className={`bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+              story.isSponsored ? 'border-2 border-saffron ring-2 ring-saffron/20' : ''
+            }`}>
               <div className="relative h-48">
                 <img 
                   src={story.image} 
@@ -49,29 +67,35 @@ const Stories = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                {story.isSponsored && (
+                  <Badge className="absolute top-3 left-3 bg-saffron text-white">
+                    <Star className="w-3 h-3 mr-1" />
+                    Sponsored by {story.sponsorName}
+                  </Badge>
+                )}
               </div>
               <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 mb-3">
+                <div className="flex items-center text-sm text-muted-foreground mb-3">
                   <span>{story.author}</span>
                   <span className="mx-2">•</span>
                   <span>{story.readTime}</span>
                   <span className="mx-2">•</span>
                   <span>{story.date}</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">{story.title}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{story.excerpt}</p>
-                <button className="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors duration-200">
+                <h3 className="text-xl font-bold text-foreground mb-3 line-clamp-2">{story.title}</h3>
+                <p className="text-muted-foreground mb-4 line-clamp-3">{story.excerpt}</p>
+                <Button variant="link" className="text-emerald hover:text-emerald/90 font-semibold p-0">
                   Read More →
-                </button>
+                </Button>
               </div>
             </article>
           ))}
         </div>
 
         <div className="text-center">
-          <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-colors duration-200">
+          <Button className="bg-saffron hover:bg-saffron/90 text-white px-8 py-3 rounded-full font-semibold">
             Submit Your Story
-          </button>
+          </Button>
         </div>
       </div>
     </section>

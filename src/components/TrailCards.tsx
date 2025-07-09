@@ -1,10 +1,15 @@
 
 import React from 'react';
-import { trailsData } from '../data/trails';
+import { trailsData, Trail } from '../data/trails';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { Star, Hotel, Camera, Shield } from 'lucide-react';
 
-const TrailCard = ({ trail }: { trail: any }) => {
+const TrailCard = ({ trail }: { trail: Trail }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+    <div className={`bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+      trail.isSponsored ? 'border-2 border-saffron ring-2 ring-saffron/20' : ''
+    }`}>
       <div className="relative h-48">
         <img 
           src={trail.image} 
@@ -12,16 +17,58 @@ const TrailCard = ({ trail }: { trail: any }) => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        {trail.isSponsored && (
+          <Badge className="absolute top-3 left-3 bg-saffron text-white">
+            <Star className="w-3 h-3 mr-1" />
+            Sponsored by {trail.sponsorName}
+          </Badge>
+        )}
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{trail.name}</h3>
-        <p className="text-gray-600 mb-4 line-clamp-3">{trail.description}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-emerald-600 font-semibold">{trail.duration}</span>
-          <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200">
+        <h3 className="text-xl font-bold text-foreground mb-2">{trail.name}</h3>
+        <p className="text-muted-foreground mb-4 line-clamp-3">{trail.description}</p>
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-sm text-emerald font-semibold">{trail.duration}</span>
+          <Button className="bg-emerald hover:bg-emerald/90 text-white rounded-full text-sm">
             Discover This Trail
-          </button>
+          </Button>
         </div>
+        
+        {/* Affiliate Links */}
+        {trail.affiliateLinks && (
+          <div className="border-t pt-4 space-y-2">
+            <h4 className="text-sm font-semibold text-foreground mb-2">Book Your Experience:</h4>
+            <div className="grid grid-cols-3 gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="text-xs"
+                onClick={() => window.open(trail.affiliateLinks!.hotels, '_blank')}
+              >
+                <Hotel className="w-3 h-3 mr-1" />
+                Hotels
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="text-xs"
+                onClick={() => window.open(trail.affiliateLinks!.tours, '_blank')}
+              >
+                <Camera className="w-3 h-3 mr-1" />
+                Tours
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="text-xs"
+                onClick={() => window.open(trail.affiliateLinks!.insurance, '_blank')}
+              >
+                <Shield className="w-3 h-3 mr-1" />
+                Insurance
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

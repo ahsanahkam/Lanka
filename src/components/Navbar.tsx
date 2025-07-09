@@ -39,6 +39,9 @@ const Navbar = () => {
             <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-emerald-600 transition-colors">
               Contact
             </button>
+            <button onClick={() => window.location.href = '/admin'} className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md transition-colors">
+              Admin
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -70,6 +73,9 @@ const Navbar = () => {
               </button>
               <button onClick={() => scrollToSection('contact')} className="block px-3 py-2 text-gray-700 hover:text-emerald-600 w-full text-left">
                 Contact
+              </button>
+              <button onClick={() => window.location.href = '/admin'} className="block px-3 py-2 bg-emerald-600 text-white hover:bg-emerald-700 w-full text-left rounded-md mx-3 mt-2">
+                Admin
               </button>
             </div>
           </div>
