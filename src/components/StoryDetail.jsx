@@ -1,17 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { stories } from '../data.js';
+import dataManager from '../dataManager.js';
 
 const StoryDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const story = stories.find(s => s.id === parseInt(id));
+  const [story, setStory] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadStory = () => {
+      const foundStory = dataManager.getStoryById(id);
+      setStory(foundStory);
+      setLoading(false);
+    };
+
+    loadStory();
+
+    // Listen for story data changes
+    dataManager.addListener(loadStory);
+
+    return () => {
+      dataManager.removeListener(loadStory);
+    };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div style={{ 
+        padding: '6rem 2rem 2rem', 
+        textAlign: 'center',
+        minHeight: '50vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div>Loading story...</div>
+      </div>
+    );
+  }
 
   if (!story) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h2>Story not found</h2>
-        <button onClick={() => navigate('/')} style={{ padding: '0.5rem 1rem', marginTop: '1rem' }}>
+      <div style={{ 
+        padding: '6rem 2rem 2rem', 
+        textAlign: 'center',
+        minHeight: '50vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+      }}>
+        <h2 style={{ marginBottom: '1rem', color: '#dc2626' }}>Story not found</h2>
+        <p style={{ marginBottom: '2rem', color: '#6b7280' }}>
+          The story you're looking for doesn't exist or may have been removed.
+        </p>
+        <button 
+          onClick={() => navigate('/')} 
+          style={{ 
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#10b981',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: '600'
+          }}
+        >
           Back to Home
         </button>
       </div>

@@ -1,17 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { trails } from '../data.js';
+import dataManager from '../dataManager.js';
 
 const TrailDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const trail = trails.find(t => t.id === parseInt(id));
+  const [trail, setTrail] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTrail = () => {
+      const foundTrail = dataManager.getTrailById(id);
+      setTrail(foundTrail);
+      setLoading(false);
+    };
+
+    loadTrail();
+
+    // Listen for trail data changes
+    dataManager.addListener(loadTrail);
+
+    return () => {
+      dataManager.removeListener(loadTrail);
+    };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div style={{ 
+        padding: '6rem 2rem 2rem', 
+        textAlign: 'center',
+        minHeight: '50vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div>Loading trail details...</div>
+      </div>
+    );
+  }
 
   if (!trail) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h2>Trail not found</h2>
-        <button onClick={() => navigate('/')} style={{ padding: '0.5rem 1rem', marginTop: '1rem' }}>
+      <div style={{ 
+        padding: '6rem 2rem 2rem', 
+        textAlign: 'center',
+        minHeight: '50vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+      }}>
+        <h2 style={{ marginBottom: '1rem', color: '#dc2626' }}>Trail not found</h2>
+        <p style={{ marginBottom: '2rem', color: '#6b7280' }}>
+          The trail you're looking for doesn't exist or may have been removed.
+        </p>
+        <button 
+          onClick={() => navigate('/')} 
+          style={{ 
+            padding: '0.75rem 1.5rem',
+            backgroundColor: '#10b981',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: '600'
+          }}
+        >
           Back to Home
         </button>
       </div>
@@ -162,20 +217,26 @@ const TrailDetail = () => {
           <div style={metaStyle}>
             <div style={metaItemStyle}>
               <div style={metaLabelStyle}>Duration</div>
-              <div style={metaValueStyle}>{trail.duration}</div>
+              <div style={metaValueStyle}>{trail.duration || 'To be updated'}</div>
             </div>
             <div style={metaItemStyle}>
               <div style={metaLabelStyle}>Difficulty</div>
-              <div style={metaValueStyle}>{trail.difficulty}</div>
+              <div style={metaValueStyle}>{trail.difficulty || 'To be updated'}</div>
             </div>
             <div style={metaItemStyle}>
               <div style={metaLabelStyle}>Location</div>
-              <div style={metaValueStyle}>{trail.location}</div>
+              <div style={metaValueStyle}>{trail.location || 'To be updated'}</div>
             </div>
             {trail.elevation && (
               <div style={metaItemStyle}>
                 <div style={metaLabelStyle}>Elevation</div>
                 <div style={metaValueStyle}>{trail.elevation}</div>
+              </div>
+            )}
+            {trail.bestTime && (
+              <div style={metaItemStyle}>
+                <div style={metaLabelStyle}>Best Time</div>
+                <div style={metaValueStyle}>{trail.bestTime}</div>
               </div>
             )}
           </div>
@@ -199,12 +260,14 @@ const TrailDetail = () => {
         />
 
         <div style={contentStyle}>
-          <p>{trail.description}</p>
+          <p>{trail.description || 'Trail description will be added soon. Check back later for detailed information about this amazing trail!'}</p>
         </div>
 
-        <div style={contentStyle}>
-          <p>{trail.fullDescription || trail.details}</p>
-        </div>
+        {(trail.fullDescription || trail.details) && (
+          <div style={contentStyle}>
+            <p>{trail.fullDescription || trail.details}</p>
+          </div>
+        )}
 
         {trail.highlights && (
           <>
@@ -245,34 +308,49 @@ const TrailDetail = () => {
         </div>
 
         <h2 style={sectionTitleStyle}>Gallery</h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1rem',
-          marginBottom: '2rem'
-        }}>
-          {trail.gallery && trail.gallery.map((image, index) => (
-            <img 
-              key={index}
-              src={image} 
-              alt={`${trail.title} - View ${index + 1}`}
-              style={{
-                width: '100%',
-                height: '200px',
-                objectFit: 'cover',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                transition: 'transform 0.3s ease'
-              }}
-              onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
-              onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-              onError={(e) => {
-                e.target.src = '/placeholder.svg';
-                e.target.style.backgroundColor = '#f3f4f6';
-              }}
-            />
-          ))}
-        </div>
+        {trail.gallery && trail.gallery.length > 0 ? (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1rem',
+            marginBottom: '2rem'
+          }}>
+            {trail.gallery.map((image, index) => (
+              <img 
+                key={index}
+                src={image} 
+                alt={`${trail.title} - View ${index + 1}`}
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
+                onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+                onError={(e) => {
+                  e.target.src = '/placeholder.svg';
+                  e.target.style.backgroundColor = '#f3f4f6';
+                }}
+              />
+            ))}
+          </div>
+        ) : (
+          <div style={{
+            padding: '2rem',
+            textAlign: 'center',
+            backgroundColor: '#f9fafb',
+            borderRadius: '8px',
+            border: '1px solid #e5e7eb',
+            marginBottom: '2rem'
+          }}>
+            <p style={{ color: '#6b7280', margin: '0' }}>
+              📷 Gallery images will be added soon. Check back later for more visual content of this trail!
+            </p>
+          </div>
+        )}
 
         <h2 style={sectionTitleStyle}>What to Expect</h2>
         <div style={contentStyle}>

@@ -110,6 +110,27 @@ export const trails = [
     difficulty: "Moderate",
     details: "Ella Rock is a mountain peak situated in Ella, Sri Lanka. The hike to Ella Rock is one of the most popular activities in Ella, offering spectacular views of the surrounding countryside.",
     fullDescription: "The hike to Ella Rock takes you through lush tea plantations, small villages, and diverse vegetation zones. The trail can be challenging in parts, but the panoramic views of the Ella Gap, tea estates, and distant mountains make it worthwhile. On clear days, you can see all the way to the southern coast."
+  },
+  {
+    id: 7,
+    title: "Galle Fort",
+    type: "cultural",
+    description: "Historic Dutch colonial fort with cobblestone streets and ocean views.",
+    image: "/assets/images/hero-background.jpg",
+    gallery: [
+      "/assets/images/hero-background.jpg",
+      "/assets/images/kandy-temple.jpg",
+      "/assets/images/sigiriya.jpg",
+      "/assets/images/mirissa.jpg"
+    ],
+    location: "Southern Province",
+    duration: "Half day",
+    difficulty: "Easy",
+    bestTime: "Year-round",
+    elevation: "10m",
+    highlights: ["Dutch colonial architecture", "Lighthouse", "Rampart walls", "Maritime museum"],
+    details: "Galle Fort is a historical, archaeological and architectural heritage monument, which even after more than 432 years maintains a polished appearance, due to extensive reconstruction work done by Archaeological Department of Sri Lanka.",
+    fullDescription: "Built by the Portuguese and later fortified by the Dutch in the 17th century, Galle Fort is a UNESCO World Heritage Site that perfectly blends European architecture with South Asian traditions. Walk along the massive rampart walls, explore the charming cobblestone streets lined with boutique shops, art galleries, and cafes. The fort's lighthouse, dating back to 1939, offers spectacular sunset views over the Indian Ocean. This living heritage site continues to be home to families who have lived here for generations."
   }
 ];
 

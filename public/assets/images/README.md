@@ -11,7 +11,8 @@ public/assets/images/
 │   ├── adams-peak/            # Adam's Peak (Sri Pada)
 │   ├── yala/                  # Yala National Park
 │   ├── kandy-temple/          # Kandy Temple
-│   └── ella-rock/             # Ella Rock
+│   ├── ella-rock/             # Ella Rock
+│   └── galle-fort/            # Galle Fort (NEW)
 └── stories/                   # Story-specific images
     ├── sigiriya-journey/      # "My Journey to Sigiriya" story
     ├── mirissa-whales/        # "Whale Watching in Mirissa" story
@@ -66,6 +67,12 @@ Each trail directory should contain **4 high-quality images**:
 - `gallery-1.jpg` - Tea plantation views
 - `gallery-2.jpg` - Summit panorama
 - `gallery-3.jpg` - Train journey/Nine Arch Bridge
+
+**📍 /trails/galle-fort/** ⭐ NEW
+- `main.jpg` - Galle Fort rampart walls
+- `gallery-1.jpg` - Dutch colonial architecture
+- `gallery-2.jpg` - Lighthouse at sunset
+- `gallery-3.jpg` - Cobblestone streets/shops
 
 ### Story Images
 Each story directory should contain **4 images**:

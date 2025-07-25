@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Trail Creation - Lanka Trails</title>
+</head>
+<body>
+    <h1>Debug Trail Creation</h1>
+    
+    <div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border-radius: 8px;">
+        <h2>Steps to Test:</h2>
+        <ol>
+            <li><strong>Start the dev server:</strong> <code>npm run dev</code></li>
+            <li><strong>Open browser console</strong> (F12)</li>
+            <li><strong>Navigate to Admin Dashboard</strong> from the navbar</li>
+            <li><strong>Click "Add Trail"</strong> in the Trails tab</li>
+            <li><strong>Fill minimum required fields:</strong>
+                <ul>
+                    <li>Title: e.g., "Test Trail"</li>
+                    <li>Type: Select any option</li>
+                    <li>Main Image: Click on one of the available images</li>
+                </ul>
+            </li>
+            <li><strong>Click "Create Trail"</strong></li>
+            <li><strong>Check console for debug messages</strong></li>
+            <li><strong>Go back to Home page</strong></li>
+            <li><strong>Look for your new trail</strong> in the trail finder section</li>
+            <li><strong>Click "View Details"</strong> on your trail</li>
+        </ol>
+    </div>
+
+    <div style="background: #e8f5e8; padding: 20px; margin: 20px 0; border-radius: 8px;">
+        <h2>What to Check:</h2>
+        <ul>
+            <li>✅ Trail appears in the trail list with correct image</li>
+            <li>✅ Trail shows "Trail details will be updated soon..." for missing description</li>
+            <li>✅ Trail shows "TBD" for missing duration and difficulty</li>
+            <li>✅ Clicking "View Details" navigates to detail page</li>
+            <li>✅ Detail page shows all default content properly</li>
+            <li>✅ Gallery section shows placeholder message or main image</li>
+        </ul>
+    </div>
+
+    <div style="background: #fff3cd; padding: 20px; margin: 20px 0; border-radius: 8px;">
+        <h2>Common Issues & Solutions:</h2>
+        
+        <h3>Issue: Image not showing in trail list</h3>
+        <ul>
+            <li>Check browser console for 404 errors</li>
+            <li>Verify image path in localStorage data</li>
+            <li>Clear localStorage: <code>localStorage.clear()</code> in console</li>
+        </ul>
+
+        <h3>Issue: Detail page not loading</h3>
+        <ul>
+            <li>Check console for navigation errors</li>
+            <li>Verify trail ID is numeric</li>
+            <li>Check if dataManager.getTrailById() returns correct data</li>
+        </ul>
+
+        <h3>Issue: Gallery not working</h3>
+        <ul>
+            <li>Check if gallery array exists in trail data</li>
+            <li>Verify image paths are properly formatted</li>
+            <li>Test with placeholder.svg fallback</li>
+        </ul>
+    </div>
+
+    <div style="background: #f8d7da; padding: 20px; margin: 20px 0; border-radius: 8px;">
+        <h2>Debug Commands (Browser Console):</h2>
+        <pre style="background: white; padding: 10px; border-radius: 4px;">
+// Check all trails
+console.table(JSON.parse(localStorage.getItem('lankaTrails_trails') || '[]'));
+
+// Check specific trail by ID
+const trails = JSON.parse(localStorage.getItem('lankaTrails_trails') || '[]');
+console.log('Trail ID 8:', trails.find(t => t.id === 8));
+
+// Clear all stored data
+localStorage.clear();
+location.reload();
+
+// Test image loading
+const img = new Image();
+img.onload = () => console.log('Image loaded successfully');
+img.onerror = () => console.log('Image failed to load');
+img.src = '/assets/images/sigiriya.jpg';
+        </pre>
+    </div>
+
+    <p><strong>Open this file alongside your browser to follow the debugging steps!</strong></p>
+</body>
+</html>

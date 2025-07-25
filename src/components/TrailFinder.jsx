@@ -1,11 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { trails } from '../data.js';
+import dataManager from '../dataManager.js';
 
 const TrailFinder = () => {
   const [selectedType, setSelectedType] = useState('all');
-  const [filteredTrails, setFilteredTrails] = useState(trails);
+  const [trails, setTrails] = useState([]);
+  const [filteredTrails, setFilteredTrails] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Load initial trails
+    const loadTrails = () => {
+      const allTrails = dataManager.getTrails();
+      setTrails(allTrails);
+      setFilteredTrails(allTrails);
+    };
+
+    loadTrails();
+
+    // Listen for trail data changes
+    dataManager.addListener(loadTrails);
+
+    return () => {
+      dataManager.removeListener(loadTrails);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Apply filter when trails or selectedType changes
+    if (selectedType === 'all') {
+      setFilteredTrails(trails);
+    } else {
+      setFilteredTrails(trails.filter(trail => trail.type === selectedType));
+    }
+  }, [trails, selectedType]);
 
   const sectionStyle = {
     padding: '5rem 0',
@@ -122,11 +150,7 @@ const TrailFinder = () => {
 
   const handleFilter = (type) => {
     setSelectedType(type);
-    if (type === 'all') {
-      setFilteredTrails(trails);
-    } else {
-      setFilteredTrails(trails.filter(trail => trail.type === type));
-    }
+    // Filter logic is now handled by useEffect
   };
 
   const handleTrailClick = (trailId) => {
@@ -195,7 +219,7 @@ const TrailFinder = () => {
                 />
                 <div style={contentStyle}>
                   <h3 style={trailTitleStyle}>{trail.title}</h3>
-                  <p style={descriptionStyle}>{trail.description}</p>
+                  <p style={descriptionStyle}>{trail.description || 'Trail details will be updated soon...'}</p>
                   
                   <div style={metaStyle}>
                     <div>
@@ -208,7 +232,7 @@ const TrailFinder = () => {
                       </span>
                     </div>
                     <div>
-                      <span>{trail.duration} • {trail.difficulty}</span>
+                      <span>{trail.duration || 'TBD'} • {trail.difficulty || 'TBD'}</span>
                     </div>
                   </div>
                   

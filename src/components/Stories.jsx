@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { stories } from '../data.js';
+import dataManager from '../dataManager.js';
 
 const Stories = () => {
   const navigate = useNavigate();
+  const [stories, setStories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadStories = () => {
+      const allStories = dataManager.getStories();
+      setStories(allStories);
+      setLoading(false);
+    };
+
+    loadStories();
+
+    // Listen for story data changes
+    dataManager.addListener(loadStories);
+
+    return () => {
+      dataManager.removeListener(loadStories);
+    };
+  }, []);
 
   const handleStoryClick = (storyId) => {
     navigate(`/story/${storyId}`);
@@ -103,21 +122,53 @@ const Stories = () => {
           Read inspiring stories from fellow travelers who have explored the beautiful trails of Sri Lanka.
         </p>
 
-        <div style={gridStyle}>
-          {stories.map(story => (
-            <article
-              key={story.id}
-              style={cardStyle}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-              }}
-            >
-              <img src={story.image} alt={story.title} style={imageStyle} />
+        {loading ? (
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '200px',
+            color: '#6b7280'
+          }}>
+            <div>Loading stories...</div>
+          </div>
+        ) : stories.length === 0 ? (
+          <div style={{
+            textAlign: 'center',
+            padding: '3rem',
+            color: '#6b7280',
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
+          }}>
+            <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>No Stories Yet</h3>
+            <p style={{ marginBottom: '2rem' }}>
+              Be the first to share your travel experience! Stories will appear here once they're published.
+            </p>
+          </div>
+        ) : (
+          <div style={gridStyle}>
+            {stories.map(story => (
+              <article
+                key={story.id}
+                style={cardStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                }}              >
+                <img 
+                  src={story.image} 
+                  alt={story.title} 
+                  style={imageStyle}
+                  onError={(e) => {
+                    e.target.src = '/placeholder.svg';
+                    e.target.style.backgroundColor = '#f3f4f6';
+                  }}
+                />
               <div style={cardContentStyle}>
                 <h3 style={cardTitleStyle}>{story.title}</h3>
                 <div style={authorStyle}>By {story.author}</div>
@@ -150,7 +201,8 @@ const Stories = () => {
               </div>
             </article>
           ))}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );
