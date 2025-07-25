@@ -1,3 +1,105 @@
+# Lanka Trails
+
+A modern, responsive React website showcasing Sri Lanka's beautiful travel trails with inline CSS styling.
+
+## Features
+
+- **Hero Section**: Stunning Sri Lanka background with call-to-action
+- **Trail Finder**: Filter and browse trails by type (cultural, coastal, highland, wildlife)
+- **Stories Section**: Travel stories from fellow explorers
+- **Sponsors Section**: Partner organizations and sponsors
+- **Responsive Design**: Works perfectly on desktop and mobile
+- **Inline CSS**: All styling done with JavaScript style objects
+- **Clean Architecture**: Simplified folder structure
+
+## Project Structure
+
+```
+src/
+├── components/          # All reusable components
+│   ├── Navbar.jsx
+│   ├── Hero.jsx
+│   ├── TrailFinder.jsx
+│   ├── Stories.jsx
+│   ├── Sponsors.jsx
+│   └── Footer.jsx
+├── data.js             # Sample data for trails, stories, sponsors
+├── App.js              # Main app component
+└── main.jsx            # Entry point
+```
+
+## Setup Instructions
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Add Images**
+   Place your images in `public/assets/images/` folder:
+   - `srilanka.jpg` (Hero background)
+   - Trail images (sigiriya.jpg, mirissa.jpg, etc.)
+   - Story images
+   - Sponsor logos
+
+3. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for Production**
+   ```bash
+   npm run build
+   ```
+
+## Customization
+
+### Adding New Trails
+Edit `src/data.js` and add new trail objects to the `trails` array:
+
+```javascript
+{
+  id: 7,
+  title: "Your Trail Name",
+  type: "cultural", // cultural, coastal, highland, wildlife
+  description: "Trail description",
+  image: "/assets/images/your-image.jpg",
+  location: "Location",
+  duration: "Duration",
+  difficulty: "Easy/Moderate/Challenging"
+}
+```
+
+### Styling
+All styles are inline CSS using JavaScript objects. To modify styles, edit the style objects in each component file.
+
+### Colors
+The site uses a consistent color scheme:
+- Primary Green: `#10b981`
+- Dark Green: `#059669`
+- Gray variants for text and backgrounds
+
+## Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Mobile responsive design
+- No external CSS dependencies
+
+## Technologies Used
+
+- React 18
+- Vite (build tool)
+- Inline CSS (JavaScript style objects)
+- No external UI libraries
+
+## License
+
+This project is open source and available under the MIT License.
+
+---
+
+## Original Project Info
+
 # Welcome to your Lovable project
 
 ## Project info
